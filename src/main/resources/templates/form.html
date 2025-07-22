@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form For Save Employee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"], input[type="hidden"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head> 
+<body>
+
+    <h1>Save Employee</h1>
+    <form th:action="@{/form/save}" th:object="${stud}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <input type="text" th:field="*{name}" placeholder="Enter Name" />
+		<div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        <input type="text" th:field="*{lastname}" placeholder="Enter LastName" />
+		<div class="error" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
+        <input type="text" th:field="*{email}" placeholder="Enter Email" />
+		<div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        <button type="submit">Save</button>
+    </form>
+
+    <a th:href="@{/list}">Back To Employee List</a>
+
+</body>
+</html>
